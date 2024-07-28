@@ -1,0 +1,543 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@font-face {
+  font-family: 'segoe';
+  src: url("/assets/fonts/Segoe_UI.ttf") format('truetype');
+}
+
+@font-face {
+  font-family: "delagothicone";
+  src: url("/assets/fonts/delagothicone-regular-webfont.woff2") format('woff2');
+}
+
+/*  delagothicone-regular-webfont.woff2  */
+
+@font-face {
+  font-family: 'poetsenone';
+  src: url("/assets/fonts/PoetsenOne-Regular.ttf") format('truetype');
+}
+
+@layer layout {
+  .layout-grid {
+    --layout-grid-min: 30ch;
+    --layout-grid-gap: 3vw;
+
+    display: grid;
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(100%, var(--layout-grid-min)), 1fr)
+    );
+    gap: var(--layout-grid-gap);
+    /* grid-auto-flow: column; */
+  }
+
+  .flex-layout-grid {
+    --flex-grid-min: 20rem;
+    --flex-grid-gap: 3vmax;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--flex-grid-gap);
+    
+    > * {
+      flex: 1 1 var(--flex-grid-min);
+    }
+  }
+
+
+}
+
+
+:root {
+  --font-family: segoe, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+.font-poetsenone{
+  font-family:poetsenone;
+  /* font-weight: bold; */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 1rem;
+  line-height:.5;
+  /* opacity:.7; */
+  min-width:10ch;
+  max-width:max-content;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(30ch, 1fr));
+  background-color: #000;
+  scroll-behavior: smooth;
+  /* animation-timing-function: cubic-bezier(0.5, 0, 0.5, 1); */
+  transition: all cubic-bezier(0.5, 0, 0.5, 1);
+}
+
+body {
+  font-family: var(--font-family);
+  overflow-y:visible;
+  overflow-x:clip;
+  /* width: fit-content; */
+  background-color: #000c;
+
+
+}
+main{
+  min-height:79svh;
+  background: linear-gradient(to bottom, rgba(163, 0, 0, 1), #151515), linear-gradient(to left, rgba(0,0,0,0), #151515);
+  background-origni:content-box;
+}
+.footer{
+  margin-block-start:2em;
+  background:#222a;
+  position:relative;
+  z-index:1;
+}
+
+.section-title{
+  color: #fff;
+  display: flex;
+  position: relative;
+  z-index: auto;
+  padding-inline-start:5rem;
+  padding-block-start:2rem;
+  text-transform:uppercase;
+  font-family:delagothicone;
+  opacity:.75;
+
+  em{
+    font-size:1.5rem;
+  }
+}
+
+/* landing page and common styles start */
+
+.navbar {
+  max-width: fit-content;
+  height: 3.125em;
+  background-color: black;
+  position: sticky;
+  top: 0;
+}
+
+.navbar-container-cust {
+  display: flex;
+  align-items: center;
+  padding: 0 3.125em;
+  height: 100%;
+  color: white;
+  font-family: "Sen", sans-serif;
+}
+
+.logo-container-cust {
+  flex: 1;
+}
+
+.logo {
+  font-size: 1.875em;
+  /* color: #4dbf00; */
+  color: rgba(220, 0, 0, 1);
+}
+
+.menu-container-cust {
+  flex: 6;
+}
+
+.menu-list {
+  display: flex;
+  list-style: none;
+}
+
+.menu-list-item {
+  margin-right: 1.875em;
+}
+.menu-list-item:hover{
+  cursor:pointer;
+}
+
+.menu-list-item.active {
+  font-weight: bold;
+}
+.profile-container-cust {
+  flex: 2;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.profile-container-cust.active, header.active {
+  background-color: white;
+
+  color: black;
+}
+
+
+.profile-text-container-cust {
+  margin: 0 1.25em;
+}
+
+.profile-picture {
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.toggle {
+  width: 2.9em;
+  height: 1.5em;
+  background-color: white;
+  border-radius: 1.875em;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: relative;
+}
+
+.toggle-icon {
+  color: rgba(163, 90, 90, 1);
+  transform:scale(1.1);
+  filter: brightness(2);
+}
+
+.toggle-ball {
+  width: 1.1em;
+  height: 1.2em;
+  background-color: rgba(133,0,0,1);
+  position: absolute;
+  right: .15em;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 1s ease all;
+}
+
+.sidebar {
+  width: 3.1em;
+  height: 100%;
+  background-color: black;
+  position: fixed;
+  top: 0;
+  /* display: flex; */
+  flex-direction: column;
+  align-items: center;
+  padding-top: 3.75em;
+  z-index:2;
+}
+.sidebar > i:hover{
+  cursor:pointer;
+}
+
+.left-menu-icon {
+  color: white;
+  font-size: 1.25rem;
+  margin-bottom: 2.5em;
+  padding-inline:25%;
+}
+
+.container-cust {
+  background-color: #151515;
+  min-height: calc(100svh - 3.125em);
+  color: white;
+}
+
+.content-container-cust {
+  margin-left: 3.125em;
+}
+
+/*  */
+.mainhero-txt-content{
+  /* margin-inline-end:5.5rem; */
+}
+
+.featured-content {
+  height: 50svh;
+  padding: 3svw;
+}
+.bg-hero{
+  background: linear-gradient(to bottom, rgba(163, 0, 0, 1), rgba(163, 0, 0, 1)), linear-gradient(to bottom, rgba(255,255,255,1), #fffe), url("/assets/imgs/2.jpg") no-repeat center;
+  background-blend-mode:multiply;
+  background-size:cover;
+  background-origin:content-box;
+  /* filter:brightness(1.2); */
+}
+.bg-footer{
+  background: linear-gradient(to top, rgba(163, 0, 0, 1), #151515), linear-gradient(to bottom, rgba(0,0,0,0), #151515);
+  mix-blend-mode:light;
+}
+.f-1{
+  /* background: linear-gradient(to bottom, rgba(0,0,0,0), #151515), url("/assets/django/f-1.jpg"); */
+  background: linear-gradient(to bottom, rgba(163, 0, 0, 1), #151515), linear-gradient(to bottom, rgba(0,0,0,0), #151515);
+  mix-blend-mode:difference;
+
+}
+.f-2{
+  background: linear-gradient(to bottom, rgba(0,0,0,0), #151515), url("/assets/django/f-2.jpg");
+}
+img.bg-spec{
+  background:transparent;
+  mix-blend-mode:hard-light;
+  transform: scale(1.5);
+  padding-inline-start: 2rem;
+  margin-inline-start: 5rem;
+  padding-block: 3rem;
+  align-self:start;
+}
+
+.featured-title {
+  width: 12.5em;
+}
+
+.featured-desc {
+  width: 31.25em;
+  color: lightgray;
+  margin: 1.875em 0;
+}
+
+.bg-nice{
+  background: linear-gradient(to bottom, rgba(0,0,0,0), #151515), url("/assets/django/f-t-1b.png");
+  mix-blend-mode:difference;
+}
+
+.featured-button {
+  background-color: #4dbf00;
+  color: white;
+  padding: 0.625em 1.25em;
+  border-radius: 0.625em;
+  border: none;
+  outline: none;
+  font-weight: bold;
+}
+
+.movie-list-container-cust {
+  padding: 0 1.25em;
+}
+
+.movie-list-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.movie-list {
+  display: flex;
+  align-items: center;
+  height: 18.75em;
+  transform: translateX(0);
+  transition: all 1s ease-in-out;
+}
+
+.movie-list-item {
+  margin-right: 1.875em;
+  position: relative;
+}
+
+.movie-list-item > img {
+  max-width:max-content;
+}
+
+
+.movie-list-item:hover .movie-list-item-img {
+  transform: scale(1.2);
+  margin: 0 1.875em;
+  opacity: 0.5;
+}
+
+.movie-list-item:hover .movie-list-item-title,
+.movie-list-item:hover .movie-list-item-desc,
+.movie-list-item:hover .movie-list-item-button {
+  opacity: 1;
+}
+
+.movie-list-item-img {
+  transition: all 1s ease-in-out;
+  width: 16.875em;
+  height: 12.5em;
+  object-fit: cover;
+  border-radius: 1.25em;
+}
+
+.movie-list-item-title {
+  background-color: #333;
+  padding: 0 0.625em;
+  font-size: 2em;
+  font-weight: bold;
+  position: absolute;
+  top: 10%;
+  left: 3.125em;
+  opacity: 0;
+  transition: 1s all ease-in-out;
+}
+
+.movie-list-item-desc {
+  background-color: #333;
+  padding: 0.625em;
+  font-size: 0.875em;
+  position: absolute;
+  top: 30%;
+  left: 3.125em;
+  width: 21.875em;
+  opacity: 0;
+  transition: 1s all ease-in-out;
+}
+
+.movie-list-item-button {
+  padding: 0.625em;
+  background-color: #4dbf00;
+  color: white;
+  border-radius: 0.625em;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  bottom: 1.25em;
+  left: 3.125em;
+  opacity: 0;
+  transition: 1s all ease-in-out;
+}
+
+.arrow {
+  font-size: 7em;
+  position: absolute;
+  top: 6rem;
+  right: 0;
+  color: lightgray;
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.container-cust.active {
+  background-color: white;
+}
+
+.movie-list-title.active {
+  color: black;
+}
+
+.navbar-container-cust.active {
+  background-color: white;
+
+  color: black;
+}
+
+.sidebar.active{
+    background-color: white;
+}
+
+.left-menu-icon.active{
+    color: black;
+}
+
+.toggle.active{
+    /* background-color: black; */
+}
+
+.toggle-ball.active{
+    /* background-color: white; */
+    transform: translateX(-1.33em);
+}
+
+@media only screen and (max-width: 58.75em){
+    .menu-container-cust{
+        display: none;
+    }
+}
+/* landing page and common styles start */
+
+.swiper {
+  max-width: 83.3svw;
+  height: 100%;
+  margin-inline:auto;
+  margin-block:3svh;
+  /* background: #222222;  */
+  /* display: grid;
+  grid-auto-flow: column;
+
+  // Ensure content elements fill up the .column
+  .element {
+    height: 100%;
+  } */
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  /* background: #fff; */
+  height:auto !important;
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius:.5rem;
+}
+.swiper-button-prev, .swiper-button-next {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff !important;
+  background:rgba(163,0,0,1);
+  width:4em  !important;
+  /* height:auto !important; */
+  min-height:4em !important;
+  /* padding:2rem   !important; */
+  margin-block-start: -2%   !important;
+  border-radius:10%;
+  opacity:.75;
+  &::after{
+    padding-block-start: 2%   !important;
+  }
+}
+
+.swiper-button-prev::after{
+  margin-inline-start: -10%   !important;
+
+}
+.swiper-button-next::after{
+  margin-inline-end: -10%   !important;  
+}
+
+/* .btn-register::hover{
+
+   
+} */
+
+/********* admin starts *******/
+
+/* temp : */
+
+.admin-card-wrapper {
+  width:78svw;
+}
+
+.admin-card-wrapper .card.join-item{
+  border-radius: 5% !important ;
+}
+
+
+
+/********* admin end *******/
