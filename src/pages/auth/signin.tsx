@@ -1,13 +1,8 @@
-import { signIn, signOut, useSession } from "next-auth/react";
-
-
 import type {
     GetServerSidePropsContext,
     InferGetServerSidePropsType,
   } from "next"
   import { getCsrfToken } from "next-auth/react"
-  import { getServerSession } from "next-auth/next"
-  import { authOptions } from "@/server/auth"
   
   export default function SignIn({
      csrfToken,
@@ -18,10 +13,7 @@ import type {
             <img src="/assets/svg/mustsee.svg" alt="brand logo" className="mx-auto" />
         </div>
 
-
-{/* <form action={async () => {await signIn("credentials", {redirect: true} )}} method="POST" className="grid gap-2"> */}
 <form action="/api/auth/callback/credentials" method="POST" className="grid gap-2">
-{/* <input type="hidden" name="csrfToken" value="4491ff628dffa649106a1491e8cd26dd3ddf034c450a0c7358bbf556322b046b" /> */}
 <input type="hidden" name="csrfToken" defaultValue={csrfToken} />
 <div>
     <label className="input input-bordered flex items-center gap-2 bg-zinc-900 text-white" htmlFor="input-username-for-credentials-provider">
@@ -52,7 +44,7 @@ import type {
                     <input name="email" type="email" className="grow" placeholder="E-mail" required />
                 </label>
         </div><div>
-        <label className="input input-bordered flex items-center gap-2 bg-zinc-900 text-white">
+    <label className="input input-bordered flex items-center gap-2 bg-zinc-900 text-white">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 16 16"
@@ -64,7 +56,7 @@ import type {
                             clipRule="evenodd" />
                     </svg>
                     <input name="password" type="password" className="grow" placeholder="mot de passe" required />
-                </label>
+    </label>
             </div>
             <button type='submit' className="p-4 mt-1 btn btn-outline bg-white hover:bg-zinc-900 text-zinc-900 hover:text-white border-none">Se connecter</button>
 </form>
@@ -77,13 +69,7 @@ import type {
   }
   
   export async function getServerSideProps(context: GetServerSidePropsContext) {
-    //  const session = await getServerSession(context.req, context.res, authOptions)
-      // If the user is already logged in, redirect.
-  // Note: Make sure not to redirect to the same page
-  // To avoid an infinite loop!
-  // if (session) {
-  //   return { redirect: { destination: "/" } }
-  // }
+
     return {
       props: {
         csrfToken: await getCsrfToken(context),

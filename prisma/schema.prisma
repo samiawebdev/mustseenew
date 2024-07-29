@@ -12,7 +12,7 @@ model CastingInfos {
   PersonId     Int
   RoleId       String?       @db.VarChar
   Movies       Movies        @relation(fields: [MovieId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "castinfostomovie_movie_FK")
-  Persons      Persons       @relation(fields: [PersonId], references: [Id], onDelete: NoAction, onUpdate: NoAction, map: "castinfostomovie_person_FK")
+  Persons      MovieActors   @relation(fields: [PersonId], references: [Id], onDelete: NoAction, onUpdate: NoAction, map: "castinfostomovie_person_FK")
   CastingRoles CastingRoles? @relation(fields: [RoleId], references: [Id], onDelete: NoAction, onUpdate: NoAction, map: "castinfostorole_role_FK")
 
   @@id([MovieId, PersonId])
@@ -25,8 +25,8 @@ model CastingRoles {
 
 model Countries {
   Id             String           @id @db.VarChar
+  MovieActors    MovieActors[]
   Movietocountry Movietocountry[]
-  Persons        Persons[]
 }
 
 model Genres {
@@ -76,17 +76,6 @@ model Movietogenre {
   Movies  Movies @relation(fields: [Movieid], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "movietogenre_movie_FK")
 
   @@id([Movieid, Genreid], map: "movietogenre_pkey")
-}
-
-model Persons {
-  Id            Int            @id @default(autoincrement())
-  Name          String?        @db.VarChar(255)
-  Gender        String?        @db.VarChar(6)
-  Birth_Country String?        @db.VarChar
-  Birth_Year    String?        @db.VarChar(4)
-  Death_Year    String?        @db.VarChar(4)
-  CastingInfos  CastingInfos[]
-  Countries     Countries?     @relation(fields: [Birth_Country], references: [Id], onDelete: NoAction, onUpdate: NoAction, map: "persontocountry_country_FK")
 }
 
 model UserRoles {
@@ -178,4 +167,15 @@ model Likes {
   movieId Int
   Movies  Movies   @relation(fields: [movieId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "movieslike_movie_FK")
   User    User     @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "userslike_user_FK")
+}
+
+model MovieActors {
+  Id            Int            @id(map: "Persons_pkey") @default(autoincrement())
+  Name          String?        @db.VarChar(255)
+  Gender        String?        @db.VarChar(6)
+  Birth_Country String?        @db.VarChar
+  Birth_Year    String?        @db.VarChar(4)
+  Death_Year    String?        @db.VarChar(4)
+  CastingInfos  CastingInfos[]
+  Countries     Countries?     @relation(fields: [Birth_Country], references: [Id], onDelete: NoAction, onUpdate: NoAction, map: "persontocountry_country_FK")
 }
