@@ -40,7 +40,7 @@ if (status === 'authenticated') {
 
 <div className="card bg-red-700 hover:bg-white w-96 join-item min-h-48  text-white hover:text-blue-950">
   <div className="card-body align-middle justify-center h-full">
-   <a href="#/" className="self-center"> <h2 className="card-title">Gestion des Membres</h2> </a>
+   <a href="/admin/manage-users" className="self-center"> <h2 className="card-title">Gestion des Membres</h2> </a>
   </div>
 </div>
 

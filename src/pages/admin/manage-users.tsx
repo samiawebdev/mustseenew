@@ -1,8 +1,13 @@
 import { useState } from "react";
 import { api } from "@/utils/api";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+
 
 const UsersAdminManager = () => {
     //define constants
+    const router = useRouter();
+    const { data: session, status } = useSession();
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -67,6 +72,10 @@ const UsersAdminManager = () => {
     };
 
     //return an empty div
+    if (status === "authenticated") {
+    if (session.user.name === "Admin") {
+        
+    
     return (
 <>
         <div className="grid align-middle items-center place-content-center text-3xl font-semibold w-screen mx-auto p-10"><h1>Gestion des Membres</h1></div>
@@ -86,12 +95,12 @@ const UsersAdminManager = () => {
             <div className="h-96 overflow-x-auto mb-4">
                 <table className="table table-pin-rows table-pin-cols bg-slate-950">
 
-                    <thead>
-                        <tr className="text-red-100">
-                            <th className="p-6">Id</th>
-                            <th className="p-6">Name</th>
-                            <th className="p-6">Email</th>
-                            <th className="p-6">Password</th>
+                    <thead className="bg-zinc-950 text-white">
+                        <tr className="text-red-100 bg-zinc-950">
+                            <th className="p-6 bg-zinc-950 text-red-100">Id</th>
+                            <th className="p-6 bg-zinc-950 text-red-100">Name</th>
+                            <th className="p-6 bg-zinc-950 text-red-100">Email</th>
+                            <th className="p-6 bg-zinc-950 text-red-100">Password</th>
 
                         </tr>
                     </thead>
@@ -114,12 +123,12 @@ const UsersAdminManager = () => {
 
                     </tbody>
                     <tfoot>
-                        <tr>
+                        <tr className="bg-zinc-950 text-red-100">
                             {/* <th  className="p-6"></th> */}
-                            <th className="">Id</th>
-                            <th className="">Nom</th>
-                            <th className="">E-mail</th>
-                            <th className="">Password</th>
+                            <th className="bg-zinc-950 text-red-100">Id</th>
+                            <th className="bg-zinc-950 text-red-100">Nom</th>
+                            <th className="bg-zinc-950 text-red-100">E-mail</th>
+                            <th className="bg-zinc-950 text-red-100">Password</th>
                             {/* <th  className="p-6"></th> */}
                         </tr>
                     </tfoot>
@@ -145,7 +154,7 @@ const UsersAdminManager = () => {
                 <h2 className="mb-4 text-xl font-bold">Rechercher un Membre</h2>
                 <div className="mb-4 flex">
                     <input
-                        className="mr-2 input input-bordered input-error p-2"
+                        className="mr-2 input input-bordered input-error p-2 bg-zinc-950 text-white"
                         placeholder="Saisir l'ID d'un membres"
                         value={userId || ""}
                         onChange={(e) => setUserId(String(e.target.value))}
@@ -172,19 +181,19 @@ const UsersAdminManager = () => {
                 <h2 className="mb-4 text-xl font-bold">Créer un Nouveau Membre</h2>
                 <div className="mb-4 flex">
                     <input
-                        className="mr-2 w-1/3 input input-bordered input-error p-2"
+                        className="mr-2 w-1/3 input input-bordered input-error p-2 bg-zinc-950 text-white"
                         placeholder="Nom d'utilisateur"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                     />
                     <input
-                        className="w-1/3 input input-bordered input-error p-2 mr-2"
+                        className="w-1/3 input input-bordered input-error p-2 mr-2 bg-zinc-950 text-white"
                         placeholder="E-mail"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                     />
                     <input
-                        className="w-1/3 input input-bordered input-error p-2"
+                        className="w-1/3 input input-bordered input-error p-2 bg-zinc-950 text-white"
                         placeholder="Mot de passe"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
@@ -206,20 +215,20 @@ const UsersAdminManager = () => {
                 <h2 className="mb-4 text-xl font-bold">Modifier un Membre</h2>
                 <div className="mb-4 flex">
                     <input
-                        className="w-1/3 mr-2 input input-bordered input-error p-2"
+                        className="w-1/3 mr-2 input input-bordered input-error p-2 bg-zinc-950 text-white"
                         placeholder="Nom d'utilisateur à modifier"
                         value={nameToUpdate}
                         onChange={(e) => setNameToUpdate(e.target.value)}
                     />
                     <input
-                        className="w-1/3 input input-bordered input-error p-2 mr-2"
+                        className="w-1/3 input input-bordered input-error p-2 mr-2 bg-zinc-950 text-white"
                         placeholder="E-mail à modifier"
                         value={emailToUpdate}
                         onChange={(e) => setEmailToUpdate(e.target.value)}
                     />
                     <input
                         placeholder="ID à modifier"
-                        className="w-1/3 mr-2 input input-bordered input-error p-2"
+                        className="w-1/3 mr-2 input input-bordered input-error p-2 bg-zinc-950 text-white"
                         value={userIdToUpdate}
                         onChange={(e) => setUserIdToUpdate(e.target.value)}
                     />
@@ -241,7 +250,7 @@ const UsersAdminManager = () => {
                 <h2 className="mb-4 text-xl font-bold">Supprimer un Membre</h2>
                 <input
                     placeholder="Saisir un ID "
-                    className="mr-2 input input-bordered input-error p-2"
+                    className="mr-2 input input-bordered input-error p-2 bg-zinc-950 text-white"
                     value={userIdToDelete}
                     onChange={(e) => setUserIdToDelete(e.target.value)}
                 />
@@ -255,6 +264,13 @@ const UsersAdminManager = () => {
         </div>
         </>
     );
+     return router.replace("/");
+    
+}
+return <a href="/api/auth/signin" className="inline-flex items-center align-middle h-10 w-80 ms-10">
+        <button className="btn btn-error h-full w-full font-bold text-lg">Se connecter</button>
+    </a>  
+}
 }
 
 export default UsersAdminManager
