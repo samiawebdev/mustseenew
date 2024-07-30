@@ -87,7 +87,7 @@ if (status === 'authenticated') {
 
 <div className="card bg-blue-950 hover:bg-white w-96 join-item min-h-48  text-white hover:text-blue-950">
   <div className="card-body align-middle justify-center h-full">
-   <a href="#/" className="self-center"> <h2 className="card-title">Mes Commentaires</h2> </a>
+   <a href="/user/likes-and-comments/comments" className="self-center"> <h2 className="card-title">Mes Commentaires</h2> </a>
   </div>
 </div>
 

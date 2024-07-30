@@ -48,15 +48,6 @@ export const userRouter = createTRPCRouter({
       });
     }),
 
-      //get user by id
-  getOne: protectedProcedure
-  .input(idSchema)
-  .query(({ input, ctx }) => {
-    return ctx.db.user.findUnique({
-      where: idSchema.parse(input),
-    });
-  }),
-
 
 
 // Admin section start
@@ -65,6 +56,15 @@ export const userRouter = createTRPCRouter({
 getAllUsers: protectedProcedure.query(({ ctx }) => {
   return ctx.db.user.findMany();
 }),
+
+ //get user by id
+ getOne: protectedProcedure
+ .input(idSchema)
+ .query(({ input, ctx }) => {
+   return ctx.db.user.findUnique({
+     where: idSchema.parse(input),
+   });
+ }),
 
 //create user
 createUser: protectedProcedure

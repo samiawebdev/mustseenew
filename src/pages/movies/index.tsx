@@ -23,7 +23,7 @@ const Movies = () => {
             console.log("like dbop result: ", res);
 
 
-            toast.success('Votre Like a bien été pris en compte', { duration: 10000 });
+            toast.success('Votre Like a bien été pris en compte', { duration: 3000 });
             // router.refresh();
         },
         onError: async (res) => {
@@ -48,7 +48,7 @@ const Movies = () => {
                     style: {
                         minWidth: '30svw',
                     },
-                    duration: 10000
+                    duration: 3000
 
                 })
             // toast.success('Votre Commentaire a bien été pris en compte', {duration: 10000});
@@ -91,21 +91,22 @@ const Movies = () => {
             // console.log("like post event check 10: ", rads.at(1)?.getAttribute('checked'))
 
             const likeChoiceIfExist = e.currentTarget?.parentNode?.children.item(0)?.querySelectorAll('input[type="radio"]:checked');
-            const modalelmt = document.querySelector('dialog');
+            const modalelmts = document.querySelectorAll('dialog');
+            const currentOpenModal = [...modalelmts].filter((mod) => mod.hasAttribute('open'))?.at(0);
             switch (likeChoiceIfExist?.length) {
                 case 0:
-                    modalelmt?.close();
+                    currentOpenModal?.close();
                     return likeToDB.mutate({ movieId: movie, islike: null })
                     break;
                 case 1:
-                    modalelmt?.close();
+                    currentOpenModal?.close();
                     if (likeChoiceIfExist.item(0) == rads.at(0)) {
                         return likeToDB.mutate({ movieId: movie, islike: true })
                     } else {
                         return likeToDB.mutate({ movieId: movie, islike: false })
                     }
                 default:
-                    modalelmt?.close();
+                    currentOpenModal?.close();
                     return
                     break;
             }

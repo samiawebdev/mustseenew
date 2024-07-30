@@ -50,7 +50,7 @@ export default function Home() {
 La communauté<em className='font-poetsenone font-extrabold text-red-500'>&nbsp;&nbsp;Must See</em></h4>
 <div className="min-h-10 flex flex-col items-center">
   <p className='mx-auto px-12 ms-6 '>  Rejoins la communauté des MustSee's et partage sur les ..... avec les autres membres !</p>
-  <p className='p-12 ps-20 line-clamp-1 md:line-clamp-none'>
+  {/* <p className='p-12 ps-20 line-clamp-1 md:line-clamp-none'>
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet temporibus eos autem iste consequatur pariatur alias id ipsa nam veniam quibusdam asperiores, ab, iusto cupiditate fugiat? Voluptatum sit distinctio cum!
   Deleniti consequuntur, ex repudiandae sint sapiente perspiciatis ut eaque voluptates eligendi placeat rem dolor deserunt. Soluta unde esse quam officiis illum expedita ipsa modi, sit aliquam alias porro saepe exercitationem?
   Odio eius dolorum, excepturi soluta qui voluptatibus consequatur ut illo a. Repellendus modi sed provident incidunt maxime quod cupiditate et neque amet pariatur deleniti harum delectus rem porro, qui aut!
@@ -61,7 +61,7 @@ La communauté<em className='font-poetsenone font-extrabold text-red-500'>&nbsp;
   Natus assumenda, reprehenderit ullam animi nam corporis qui ea recusandae quod perferendis error excepturi officiis tempora quisquam doloribus saepe deleniti explicabo culpa molestiae quidem accusamus id sit veritatis? Ullam, quas.
   Molestias recusandae debitis aperiam obcaecati impedit aspernatur quam, quae, quia minus non minima corporis voluptates delectus sint qui iusto at corrupti soluta accusamus reiciendis perspiciatis harum expedita. Iure, sit maxime.
   Nostrum quam doloremque pariatur perspiciatis dicta voluptatum eveniet perferendis officia ea nam deleniti commodi facilis ullam voluptate similique soluta optio, quo, veniam ipsa hic aliquam autem dolores! Vel, autem perspiciatis!
-  </p>
+  </p> */}
 </div>
 </section>
 

@@ -155,7 +155,7 @@ const Modalitor = ({ movie, text, cssClass, onClick = {}, isLike = null }, { mov
                                             <span className="label-text text-white font-bold">Ton Commentaire</span>
 
                                         </div>
-                                        <textarea id={`txt-${movie}`} className="textarea textarea-bordered textarea-error h-24 w-96 ms-1 bg-zinc-900" placeholder="Commentaire" maxLength={1000} onInput={(e) => uxToTextArea(e)}></textarea>
+                                        <textarea id={`txt-${movie}`} className="textarea textarea-bordered textarea-error h-24 w-96 ms-1 bg-zinc-900" placeholder="Commentaire" maxLength={100} onInput={(e) => uxToTextArea(e)}></textarea>
 
                                         <div>
                                             <div ><progress className="progress progress-info w-56" value={0} max={100} id={`p-bar-${movie}`}></progress></div>

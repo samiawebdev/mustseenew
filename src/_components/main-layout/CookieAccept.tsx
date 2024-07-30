@@ -22,7 +22,7 @@ const CookieAccept = () => {
       }}
       expires={1}
     >
-      <span className="text-zinc-950">Ce site web utilise des cookies <span>&nbsp;&nbsp; <a href='/cgu'><ins>En savoir plus</ins></a> </span></span>
+      <span className="text-zinc-950">Ce site web utilise des cookies <span>&nbsp;&nbsp; <a href='/cgu' target="_blank"><ins>En savoir plus</ins></a> </span></span>
     </CookieConsent>
   );
 };
